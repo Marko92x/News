@@ -1,0 +1,5 @@
+rs/htec/cmsrest/cms/news/Test.class
+rs/htec/cmsrest/cms/rest/RestEndpoint.class
+rs/htec/cmsrest/cms/news/News.class
+rs/htec/cmsrest/cms/news/DBBroker.class
+rs/htec/cmsrest/cms/news/Controller.class

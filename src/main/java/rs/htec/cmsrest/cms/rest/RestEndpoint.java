@@ -20,7 +20,6 @@ import javax.ws.rs.core.Response;
 import rs.htec.cmsrest.cms.news.Controller;
 import rs.htec.cmsrest.cms.news.DBBroker;
 import rs.htec.cmsrest.cms.news.News;
-import rs.htec.cmsrest.cms.news.Test;
 
 /**
  *
@@ -29,22 +28,15 @@ import rs.htec.cmsrest.cms.news.Test;
 @Path("/hello")
 public class RestEndpoint {
 
-    DBBroker db;
-
-    public RestEndpoint() {
-        db = new DBBroker();
-    }
-
     // this too
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/ispis")
     public Response helloWorld() {
+        return Response.ok(Controller.getInstance().readNews()).build();
 
-        return Response.ok(Test.news.get(0).getId() + "").build();
     }
 
-    
     //Change, this is shit
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -53,7 +45,6 @@ public class RestEndpoint {
         News a = new News();
 
         Controller.getInstance().insertNews(a);
-        
 
         return Response.ok("Uspesno ubacena vest").build();
     }

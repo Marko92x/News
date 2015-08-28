@@ -5,26 +5,30 @@
  */
 
 
-function ucitajPrvu(){
+function ucitajTabelu(){
 	
 	$.ajax({
 		type: "GET",
-		url: "http://localhost:8080/Turniri2/webresources/domen.prva/sort/" + sort,
+		url: "http://localhost:8084/cms-rest/rest/news/ispis",
 		dataType: "json",
 		
 		success: function(response){
 
-			table = '<table class="table" id="tbl"><tr  id="act"><th></th><th>RBr</th><th>Naziv</th><th>Mesto</th><th>Pobede</th><th>Izgubljene</th><th>Neresene</th><th>Poeni</th></tr>';
+			table = '<table class="table" id="tbl"><tr  id="act"><th>ID</th><th>Title</th><th>Description</th></tr>';
 
 			$.each(response, function(index, value) {
 			   
-			   table += '<tr><td> <input type="checkbox" id="p' + value.id + '"></td><td id="prva'+ (index + 1) +'">' + (index + 1) + '</td><td>' + value.naziv + '</td><td>' + value.mesto.naziv + '</td><td data-type="text" data-placement="right" data-title="Enter username" id="xpp' + value.id + '">' + value.pobede + '</td><td data-type="text" data-placement="right" data-title="Enter username" id="xpi' + value.id + '">' + value.izgubljene + '</td><td data-type="text" data-placement="right" data-title="Enter username" id="xpn' + value.id + '">' + value.neresene + '</td><td data-type="text" data-placement="right" data-title="Enter username" id="xpr' + value.id + '">' + value.poeni + '</td></tr>';
+			   table += '<tr><td id="'+ (index + 1) +'">' + value.id + '</td><td>' + value.title + '</td><td>' + value.description + '</td></tr>';
 			  
 			});
 
-			document.getElementById('prva_liga').innerHTML = table;
-			pdfTable = table;
+			document.getElementById('tabela').innerHTML = table;
+			
 
 		}
 	});
 }
+
+$('document').ready(function(){
+    ucitajTabelu();
+});

@@ -5,6 +5,7 @@
  */
 package rs.htec.cmsrest.cms.rest;
 
+import com.google.gson.Gson;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,7 +37,7 @@ public class RestEndpoint {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/ispis")
     public Response helloWorld() {
-        return Response.ok().entity(Controller.getInstance().readNews()).build();
+        return Response.ok().entity(new Gson().toJson(Controller.getInstance().readNews())).build();
     }
 
     //Change, this is shit

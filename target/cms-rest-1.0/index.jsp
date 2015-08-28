@@ -53,6 +53,9 @@
             </div>
         </div>
     </header>
+    <div class="span3"></div>
+    <div class="span3" id="tabela"></div>
+    <div class="span3"></div>
 
     <!-- About Section -->
     <section id="about" class="container content-section text-center">

@@ -7,6 +7,8 @@ package rs.htec.cmsrest.cms.news;
 
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,6 +19,7 @@ import java.util.logging.Logger;
 public class Controller {
     
     private static Controller instance;
+    public List<News> news = new ArrayList<>();
 
     DBBroker db;
     
@@ -51,15 +54,14 @@ public class Controller {
         }
     }
     
-    public String readNews() {
-        String s = "";
+    public List<News> readNews() {
         try {
             db.openConnection();
-            s = db.readNews();
+            news = db.readNews();
             db.closeConnectoion();
         } catch (SQLException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return s;
+        return news;
     }
 }

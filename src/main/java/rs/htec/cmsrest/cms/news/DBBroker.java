@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -52,26 +54,22 @@ public class DBBroker {
         ps.executeUpdate();
     }
 
-    public String readNews() {
+    public List<News> readNews() throws SQLException {
         String upit = "select * from news";
-        String message = "";
-        try {
-            if (connection == null)
-                return "nesto";
-            Statement stat = connection.createStatement();
-            ResultSet rs = stat.executeQuery(upit);
+        
+        Statement stat = connection.createStatement();
+        ResultSet rs = stat.executeQuery(upit);
+        List<News> news = new ArrayList<>();
         while (rs.next()) {
-            int id = rs.getInt(1);
-            String title = rs.getString(2);
-            String description = rs.getString(3);
-            message += "Vest br. : " + id
-                    + ", Naslov: " + title
-                    + ", Tekst: " + description + "\n";
+            News n = new News();
+            n.setId(rs.getInt(1));
+            n.setTitle(rs.getString(2));
+            n.setDescription(rs.getString(3));
+            news.add(n);
         }
-        } catch (SQLException ex) {
-            Logger.getLogger(DBBroker.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return message;
+        
+        return news;
+        
     }
 
 }

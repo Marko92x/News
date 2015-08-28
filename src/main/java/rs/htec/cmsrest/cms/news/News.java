@@ -5,12 +5,21 @@
  */
 package rs.htec.cmsrest.cms.news;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author marko
  */
-public class News {
+@Entity
+@XmlRootElement
+public class News implements Serializable{
     
+    @Id
     private int id;
     private String description;
     private String title;
@@ -21,7 +30,7 @@ public class News {
     }
 
     
-    
+    @XmlElement
     public int getId() {
         return id;
     }
@@ -30,6 +39,7 @@ public class News {
         this.id = id;
     }
 
+    @XmlElement
     public String getDescription() {
         return description;
     }
@@ -38,6 +48,7 @@ public class News {
         this.description = description;
     }
 
+    @XmlElement
     public String getTitle() {
         return title;
     }
